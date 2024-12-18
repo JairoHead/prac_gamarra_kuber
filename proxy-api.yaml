@@ -66,7 +66,7 @@ spec:
         
 ---
 
-apiVersion: apps/v1  # Aquí se actualizó a 'apps/v1'
+apiVersion: apps/v1  # Actualizado a 'apps/v1'
 kind: Deployment
 metadata:
   name: proxy-api
@@ -99,12 +99,20 @@ spec:
         - name: nginx-proxy-config
           mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
       - name: flask-api
         image: gcr.io/test-vcn-249912/proxy-api
-        # GCP
-        # image: gcr.io/<projectID>/flask-api
-        # IBM Cloud
-        # image: registry.ng.bluemix.net/vcn/flask-api
-        # Azure
-        # image: vcnrc.azurecr.io/flask-api
         imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
