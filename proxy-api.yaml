@@ -66,7 +66,7 @@ spec:
         
 ---
 
-apiVersion: apps/v1  # Actualizado de v1beta2 a v1
+apiVersion: apps/v1  # Aquí se actualizó a 'apps/v1'
 kind: Deployment
 metadata:
   name: proxy-api
@@ -106,4 +106,5 @@ spec:
         # IBM Cloud
         # image: registry.ng.bluemix.net/vcn/flask-api
         # Azure
-        # image: vcnrc.azurec
+        # image: vcnrc.azurecr.io/flask-api
+        imagePullPolicy: IfNotPresent
