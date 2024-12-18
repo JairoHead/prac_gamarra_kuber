@@ -63,7 +63,7 @@ spec:
   selector:
     name: proxy-api
   type: LoadBalancer
-        
+
 ---
 
 apiVersion: apps/v1  # Actualizado a 'apps/v1'
@@ -82,6 +82,8 @@ spec:
       labels:
         name: proxy-api
     spec:
+      imagePullSecrets:
+        - name: gcr-secret  # Aquí se especifica el Secret creado para acceder a GCR
       volumes:
       - name: nginx-proxy-config
         configMap:
@@ -107,7 +109,7 @@ spec:
             cpu: "500m"
             memory: "1Gi"
       - name: flask-api
-        image: gcr.io/test-vcn-249912/proxy-api
+        image: gcr.io/test-vcn-249912/proxy-api  # Asegúrate de que esta es la ruta correcta a tu imagen
         imagePullPolicy: IfNotPresent
         resources:
           requests:
